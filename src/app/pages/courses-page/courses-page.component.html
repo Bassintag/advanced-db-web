@@ -1,0 +1,18 @@
+<div class="container" *ngIf="courseObservable | async as page">
+  <div class="text-center d-flex justify-content-around align-items-center">
+    <img src="assets/img/statue-sm.png" class="animated-flip">
+    <div>
+      <h1 class="font-weight-bolder aesthetic-effect-text-glitch"
+          data-glitch="C O U R S E S">C O U R S E S</h1>
+      <h2 class="font-weight-bold aesthetic-font-modifier-outline-pink font-italic">{{page.total}} RESULTS</h2>
+    </div>
+    <img src="assets/img/statue-sm.png" class="animated-flip">
+  </div>
+  <app-pager [page]="page" class="d-block mt-3" (pageChange)="goToPage($event)"></app-pager>
+  <div class="row">
+    <div class="col-12 col-lg-6 my-3" *ngFor="let course of page.items">
+      <app-course-preview [course]="course"></app-course-preview>
+    </div>
+  </div>
+  <app-pager [page]="page" class="d-block" (pageChange)="goToPage($event)"></app-pager>
+</div>

@@ -1,0 +1,7 @@
+<div class="aesthetic-windows-95-container p-3 d-flex flex-row align-items-center">
+  <button class="aesthetic-windows-95-button mr-2" [disabled]="first" (click)="changePage(0)">first</button>
+  <button class="aesthetic-windows-95-button" [disabled]="first" (click)="changePage(page.page - 1)">prev</button>
+  <span class="mx-auto font-weight-bold">Page {{page.page + 1}} of {{totalPages}}</span>
+  <button class="aesthetic-windows-95-button" [disabled]="last" (click)="changePage(page.page + 1)">next</button>
+  <button class="aesthetic-windows-95-button ml-2" [disabled]="last" (click)="changePage(totalPages - 1)">last</button>
+</div>

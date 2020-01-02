@@ -1,0 +1,14 @@
+<div class="container">
+
+  <div *ngIf="registrationsObservable | async as registrations">
+    <h3 class="text-center">{{registrations.total}} Registrations</h3>
+    <div *ngFor="let registration of registrations.items" class="row">
+      <div class="col-12 my-3">
+        <div class="aesthetic-windows-95-container p-3 text-center clickable"
+             routerLink="/courses/{{registration.course.id}}">
+          {{registration.course.title}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

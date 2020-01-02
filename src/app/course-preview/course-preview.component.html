@@ -1,0 +1,23 @@
+<div class="aesthetic-windows-95-modal clickable" *ngIf="course" routerLink="/courses/{{course.id}}">
+  <div class="aesthetic-windows-95-modal-title-bar">
+    <div class="aesthetic-windows-95-modal-title-bar-text text-truncate">{{course.title}}</div>
+  </div>
+  <div class="aesthetic-windows-95-modal-content">
+    <div class="d-flex flex-row">
+      <div>
+        <img [src]="course.imageLink" *ngIf="course.imageLink" class="course-img">
+      </div>
+      <div class="ml-3">
+        <div>
+            <small *ngFor="let author of course.authors; let i = index">
+              <ng-container *ngIf="i > 0">, </ng-container>
+              {{author.name}}
+            </small>
+        </div>
+        <div class="mt-2">
+          <small class="aesthetic-black-bg-color aesthetic-white-color px-2">{{course.provider.name}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

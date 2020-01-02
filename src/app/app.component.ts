@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs';
+import {AuthService, Credentials} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'web';
+
+  readonly credentialsObservable: Observable<Credentials>;
+
+  constructor(
+    private readonly authService: AuthService,
+  ) {
+    this.credentialsObservable = authService.credentials;
+  }
 }

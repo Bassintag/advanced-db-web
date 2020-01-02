@@ -1,0 +1,53 @@
+<div class="container" *ngIf="courseObservable | async as course; else loading">
+  <a routerLink="/courses">
+    <img src="/assets/icons/help_book_cool-0.png">
+    <span class="ml-2">back to courses</span>
+  </a>
+  <div class="row">
+    <div *ngIf="course.imageLink" class="col-12 col-md-6 col-lg-4 mt-3">
+      <div class="aesthetic-windows-95-container p-3">
+        <div class="aesthetic-effect-crt">
+          <img class="w-100" [src]="course.imageLink">
+        </div>
+        <div class="mt-3 aesthetic-windows-95-container p-3">
+          <a [href]="course.link" target="_blank">view on {{course.provider.name}}</a>
+        </div>
+      </div>
+      <div class="aesthetic-windows-95-container p-3 mt-3" *ngIf="authService.credentials | async">
+        <small class="text-center aesthetic-windows-95-green-color"
+               *ngIf="registered; else notRegistered">registered</small>
+        <ng-template #notRegistered>
+          <button class="aesthetic-windows-95-button w-100" *ngIf="!registering; else loading"
+                  (click)="register(course)">Register
+          </button>
+        </ng-template>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-8 mt-3">
+      <div class="aesthetic-windows-95-container p-3">
+        <h3 class="font-weight-bold">{{course.title}}</h3>
+        <p>
+          <span *ngFor="let author of course.authors" class="mr-2">{{author.name}}</span>
+        </p>
+        <small>{{course.description}}</small>
+      </div>
+      <div class="aesthetic-windows-95-container p-3 mt-3" *ngIf="course.knowledges.length > 0">
+        <h3>Topics</h3>
+        <div>
+          <span *ngFor="let knowledge of course.knowledges; let i = index">
+            <ng-container *ngIf="i">, </ng-container>
+            {{knowledge.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="d-flex flex-row justify-content-center">
+    <div class="aesthetic-windows-95-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

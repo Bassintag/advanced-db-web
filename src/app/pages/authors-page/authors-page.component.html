@@ -1,0 +1,12 @@
+<div class="container" *ngIf="authorsObservable | async as page">
+  <app-pager [page]="page" (pageChange)="gotToPage($event)"></app-pager>
+  <div class="row">
+    <div class="col-6 col-md-4 col-lg-3 my-3" *ngFor="let author of page.items">
+      <div class="clickable d-block aesthetic-windows-95-container p-3 text-center text-truncate"
+         routerLink="/courses" [queryParams]="{'authorId': author.id}">
+        {{author.name}}
+      </div>
+    </div>
+  </div>
+  <app-pager [page]="page" (pageChange)="gotToPage($event)"></app-pager>
+</div>

@@ -1,0 +1,64 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+@import "~aesthetic-css/src/index";
+@import url("https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap");
+
+body {
+  font-family: 'Cinzel', serif;
+  cursor: url('/assets/icons/hand.png'), default;
+}
+
+a {
+  font-weight: bold;
+}
+
+button[disabled].aesthetic-windows-95-button {
+  background-color: $aesthetic-windows-95-gray-border;
+}
+
+button[disabled].aesthetic-windows-95-button:active {
+  transform: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+label {
+  font-size: small;
+  margin-bottom: $spacer / 8;
+}
+
+.aesthetic-windows-95-text-input {
+  width: 100%;
+}
+
+button.button-link {
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  color: $link-color;
+
+  &:hover, &:active {
+    color: $link-hover-color;
+    text-decoration: underline;
+  }
+}
+
+
+.animated-flip {
+  animation: animatedFlip 4s infinite linear;
+}
+
+@keyframes animatedFlip {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
