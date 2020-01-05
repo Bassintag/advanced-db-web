@@ -32,7 +32,7 @@ export class ResourceService<T> {
           ...filtersReduced,
         }
       }),
-      headers: {
+      headers: this.authHeader && {
         Authorization: this.authHeader,
       }
     });
@@ -40,7 +40,7 @@ export class ResourceService<T> {
 
   getById(id: string): Observable<T> {
     return this.httpClient.get<T>(resolveApiUrl(`${this.path}/${id}`), {
-      headers: {
+      headers: this.authHeader && {
         Authorization: this.authHeader,
       }
     });
@@ -48,7 +48,7 @@ export class ResourceService<T> {
 
   create(body: T): Observable<T> {
     return this.httpClient.post<T>(resolveApiUrl(this.path), body, {
-      headers: {
+      headers: this.authHeader && {
         Authorization: this.authHeader,
       }
     });

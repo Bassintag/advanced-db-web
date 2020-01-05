@@ -1,0 +1,25 @@
+<div class="container" *ngIf="usersObservable | async as page; else loading">
+  <div class="d-flex flex-column align-items-center justify-content-center my-3">
+    <h1 class="font-weight-bolder aesthetic-effect-text-glitch mt-3"
+        data-glitch="U S E R S">U S E R S</h1>
+  </div>
+  <app-pager [page]="page" (pageChange)="goToPage($event)"></app-pager>
+  <div class="row">
+    <div class="col-6 col-md-4 col-lg-3 my-3" *ngFor="let user of page.items">
+      <div class="clickable d-block aesthetic-windows-95-container p-3 text-center text-truncate"
+           routerLink="/users/{{user.id}}">
+        {{user.username}}
+      </div>
+    </div>
+  </div>
+  <app-pager [page]="page" (pageChange)="goToPage($event)"></app-pager>
+</div>
+<ng-template #loading>
+  <div class="d-flex flex-row justify-content-center">
+    <div class="aesthetic-windows-95-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

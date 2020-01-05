@@ -1,9 +1,9 @@
-<div class="container" *ngIf="topicsObservable | async as page">
+<div class="container" *ngIf="topicsObservable | async as page; else loading">
   <div class="d-flex flex-column align-items-center justify-content-center my-3">
     <div class="animated-flip">
-      <img src="/assets/img/palm-tree.png" height="200">
-      <img src="/assets/img/eiffel.png" height="200">
-      <img src="/assets/img/palm-tree.png" height="200">
+      <img src="assets/img/palm-tree.png" height="200">
+      <img src="assets/img/eiffel.png" height="200">
+      <img src="assets/img/palm-tree.png" height="200">
     </div>
     <h1 class="font-weight-bolder aesthetic-effect-text-glitch mt-3"
         data-glitch="T O P I C S">T O P I C S</h1>
@@ -19,3 +19,13 @@
   </div>
   <app-pager [page]="page" (pageChange)="gotToPage($event)"></app-pager>
 </div>
+<ng-template #loading>
+  <div class="d-flex flex-row justify-content-center">
+    <div class="aesthetic-windows-95-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
+

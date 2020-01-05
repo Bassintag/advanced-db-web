@@ -1,4 +1,4 @@
-<img src="/assets/icons/users_key-4.png" class="clickable" (click)="open = true" *ngIf="!open; else isopen">
+<img src="assets/icons/users_key-4.png" class="clickable" (click)="open = true" *ngIf="!open; else isopen">
 <ng-template #isopen>
   <div class="aesthetic-windows-95-modal position-absolute modal">
     <div class="aesthetic-windows-95-modal-title-bar">
@@ -11,6 +11,9 @@
     </div>
     <div class="aesthetic-windows-95-modal-content">
       <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="error | async as e">
+          <small class="aesthetic-pepsi-red-color">{{e}}</small>
+        </div>
         <div>
           <label for="input--login--username">username</label>
           <input id="input--login--username" class="aesthetic-windows-95-text-input" name="username" required

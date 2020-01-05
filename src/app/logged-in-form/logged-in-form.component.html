@@ -4,6 +4,6 @@
     <button class="button-link ml-3" (click)="logOut()">log out</button>
   </div>
   <div *ngIf="meObservable | async as me">
-    <a routerLink="/user/{{me.id}}">profile</a>
+    <a routerLink="/users/{{me.id}}">profile</a>
   </div>
 </div>

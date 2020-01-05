@@ -14,8 +14,10 @@ import {FormsModule} from '@angular/forms';
 import {CoursePageComponent} from './pages/course-page/course-page.component';
 import {AuthorsPageComponent} from './pages/authors-page/authors-page.component';
 import {TopicsPageComponent} from './pages/topics-page/topics-page.component';
-import { LoggedInFormComponent } from './logged-in-form/logged-in-form.component';
-import { UserPageComponent } from './pages/user-page/user-page.component';
+import {LoggedInFormComponent} from './logged-in-form/logged-in-form.component';
+import {UserPageComponent} from './pages/user-page/user-page.component';
+import {UsersPageComponent} from './pages/users-page/users-page.component';
+import { DvdLogoComponent } from './dvd-logo/dvd-logo.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
     TopicsPageComponent,
     LoggedInFormComponent,
     UserPageComponent,
+    UsersPageComponent,
+    DvdLogoComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,11 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
         component: TopicsPageComponent,
       },
       {
-        path: 'user/:id',
+        path: 'users',
+        component: UsersPageComponent,
+      },
+      {
+        path: 'users/:id',
         component: UserPageComponent,
       }
     ])

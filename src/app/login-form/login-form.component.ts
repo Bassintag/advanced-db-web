@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {User} from '../domain/user';
 import {catchError} from 'rxjs/operators';
-import {EMPTY, of} from 'rxjs';
+import {EMPTY, Observable, of} from 'rxjs';
 import {AuthService} from '../services/auth.service';
 
 @Component({
@@ -20,10 +20,13 @@ export class LoginFormComponent implements OnInit {
 
   loading: boolean;
 
+  error: Observable<string>;
+
   constructor(
     private readonly userService: UserService,
     private readonly authService: AuthService,
   ) {
+    this.error = authService.error;
   }
 
   ngOnInit() {

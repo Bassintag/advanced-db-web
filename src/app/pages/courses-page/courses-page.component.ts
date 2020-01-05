@@ -3,7 +3,7 @@ import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import {Course} from '../../domain/course';
 import {Page} from '../../domain/page';
 import {CourseService} from '../../services/course.service';
-import {flatMap, map} from 'rxjs/operators';
+import {map, switchMap, tap} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -14,6 +14,8 @@ import {ActivatedRoute} from '@angular/router';
 export class CoursesPageComponent implements OnInit, OnDestroy {
 
   courseObservable: Observable<Page<Course>>;
+
+  loading: boolean;
 
   private readonly pageSubject: Subject<number>;
 
@@ -35,7 +37,9 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.courseObservable = combineLatest([this.pageSubject, this.authorIdObservable, this.topicIdObservable]).pipe(
-      flatMap(([p, aId, tId]) => this.courseService.getMany(p, 20, {authors: aId, knowledges: tId}))
+      tap(() => this.loading = true),
+      switchMap(([p, aId, tId]) => this.courseService.getMany(p, 20, {authors: aId, knowledges: tId})),
+      tap(() => this.loading = false),
     );
   }
 

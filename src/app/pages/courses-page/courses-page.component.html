@@ -1,4 +1,4 @@
-<div class="container" *ngIf="courseObservable | async as page">
+<div class="container" *ngIf="courseObservable | async as page; else loadingBar">
   <div class="text-center d-flex justify-content-around align-items-center">
     <img src="assets/img/statue-sm.png" class="animated-flip">
     <div>
@@ -9,10 +9,19 @@
     <img src="assets/img/statue-sm.png" class="animated-flip">
   </div>
   <app-pager [page]="page" class="d-block mt-3" (pageChange)="goToPage($event)"></app-pager>
-  <div class="row">
+  <div class="row" *ngIf="!loading; else loadingBar">
     <div class="col-12 col-lg-6 my-3" *ngFor="let course of page.items">
       <app-course-preview [course]="course"></app-course-preview>
     </div>
   </div>
   <app-pager [page]="page" class="d-block" (pageChange)="goToPage($event)"></app-pager>
 </div>
+<ng-template #loadingBar>
+  <div class="d-flex flex-row justify-content-center my-3">
+    <div class="aesthetic-windows-95-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

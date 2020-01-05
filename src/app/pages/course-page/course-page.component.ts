@@ -14,7 +14,7 @@ import {RegistrationService} from '../../services/registrations.service';
 })
 export class CoursePageComponent implements OnInit {
 
-  private readonly courseObservable: Observable<Course>;
+  readonly courseObservable: Observable<Course>;
 
   registering: boolean;
 
@@ -23,8 +23,8 @@ export class CoursePageComponent implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly courseService: CourseService,
-    private readonly registrationSerivce: RegistrationService,
-    private readonly authService: AuthService,
+    private readonly registrationService: RegistrationService,
+    public readonly authService: AuthService,
   ) {
     this.courseObservable = this.activatedRoute.params.pipe(
       map(p => p.id),
@@ -38,7 +38,7 @@ export class CoursePageComponent implements OnInit {
   }
 
   register(course: Course) {
-    this.registrationSerivce.create({
+    this.registrationService.create({
       course,
     }).subscribe(() => {
       this.registering = false;
